@@ -1,0 +1,20 @@
+##Turns off all lights 20 minutes after sunrise
+- alias: All lights off
+  trigger:
+    platform: sun
+    event: 'sunrise'
+    offset: '00:30:00'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.all_lights
+        state: 'on'
+      - condition: state
+        entity_id: group.all_switches
+        state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: 
+        - group.main_floor_lights
+        - group.upstairs_lights

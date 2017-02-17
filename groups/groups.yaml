@@ -1,0 +1,115 @@
+##Groups
+family:
+  name: Family
+  entities:
+    - device_tracker.carla_note4
+    - device_tracker.patrick_pats7edge
+living_room:
+  name: Living Room
+  entities:
+    - light.living_room_dimmer_switch_level_7_0
+kitchen:
+  name: Kitchen
+  entities:
+    - light.dining_level_10_0
+    - light.kitchen_level_12_0
+kitchen_appliances:
+  name: Kitchen Appliances
+  entities:
+    - switch.coffee_maker
+bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - switch.makeup_light
+    - switch.fan_light
+bedroom_devices:
+  name: Bedroom Devices
+  entities:
+    - switch.bedroom_tv
+    - switch.humidifier
+    - fan.bedroom_fan
+victoria:
+  name: Victoria
+  entities:
+    - switch.victoria_night_light
+basement_lights:
+  name: Basement Lights
+  entities:
+    - switch.basement_stairs_switch_9_0
+guest_bedroom:
+  name: Guest Bedroom
+  entities:
+    - media_player.my_aftm
+main_floor_lights:
+  name: Main Floor Lights
+  entities:
+    - light.living_room_dimmer_switch_level_7_0
+    - light.kitchen_level_12_0
+    - light.dining_level_10_0
+upstairs_lights:
+  name: Upstairs Lights
+  entities:
+    - switch.makeup_light
+    - switch.fan_light
+    - switch.victoria_night_light
+darksky_summary:
+  name: Weather
+  entities:
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_precip_probability
+    - sensor.moon
+darksky_all:
+  name: Weather
+  entities:
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_minutely_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_cloud_coverage
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_nearest_storm_distance
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_wind_bearing
+environment:
+  name: Environment
+  entities:
+    - sensor.date__time
+    - sensor.yr_symbol
+    - sun.sun
+zoneminder:
+  name: ZoneMinder
+  entities:
+    - sensor.front_door_status
+    - sensor.front_door_events
+plex:
+  name: PLEX Server
+  entities:
+    sensor.plex
+atlantia:
+  name: HA Server - Atlantia
+  entities:
+    - sensor.cpu_use
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
+    - sensor.ram_use_2
+    - sensor.ram_use
+    - sensor.ram_free
+    - sensor.swap_use
+    - sensor.disk_use_
+    - sensor.disk_use__2
+    - sensor.disk_free_
+    - sensor.last_boot
+    - sensor.since_last_boot
+    - sensor.ipv4_address_ens160
+lock_house:
+  name: Lock House
+  entities:
+    - script.lock_house_now

@@ -1,0 +1,25 @@
+##Lights
+- entity_id: light.living_room_dimmer_switch_level_7_0
+  icon: mdi:spotlight-beam
+  friendly_name: Living Room Lights
+- entity_id: light.kitchen_level_12_0
+  icon: mdi:spotlight-beam
+  friendly_name: Kitchen Lights
+- entity_id: light.dining_level_10_0
+  icon: mdi:spotlight-beam
+  friendly_name: Dining Lights
+- entity_id: switch.basement_stairs_switch_9_0
+  icon: mdi:spotlight-beam
+  friendly_name: Basement Stair Lights
+- entity_id: switch.makeup_light
+  icon: mdi:lamp
+  assumed_state: false
+  friendly_name: corner light
+- entity_id: switch.victoria_night_light
+  icon: mdi:lightbulb
+  assumed_state: false
+  friendly_name: Victoria Night Light
+- entity_id: switch.fan_light
+  icon: mdi:spotlight
+  assumed_state: false
+  friendly_name: Ceiling Light

@@ -1,0 +1,130 @@
+##Turns on living room and kitchen lights, 20 minutes before sunset, if Patrick or Carla is home
+- alias: Main floor lights on
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:20:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: 'home'
+      - condition: state
+        entity_id: group.main_floor_lights
+        state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: 
+        - light.living_room_dimmer_switch_level_7_0
+        - light.kitchen_level_12_0
+
+##Turns off main floor lights 30 minutes after sunrise
+- alias: Main floor lights off after sunrise
+  trigger:
+    platform: sun
+    event: 'sunrise'
+    offset: '00:30:00'
+  condition:
+    condition: state
+    entity_id: group.main_floor_lights
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+
+##Turns off main floor lights off when Carla leaves in the mornings
+- alias: Main floor lights off when Carla leaves
+  trigger:
+    platform: zone
+    entity_id: device_tracker.carla_note4
+    zone: zone.home
+    event: 'leave'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.main_floor_lights
+        state: 'on'
+      - condition: time
+        after: '06:30:00'
+        before: '08:30:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+
+##Turns off the main floor lights at 10:00am on weekdays
+- alias: Main floor lights off weekdays 10am
+  trigger:
+    platform: time
+    after: '10:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - sun
+          - mon
+          - tue
+          - wed
+          - thu
+      - condition: state
+        entity_id: group.main_floor_lights
+        state: 'on'        
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+
+##Turn off main floor lights on weekdays, between 10am and 4pm, after being on for 10 minutes
+- alias: Main lights off weekdays during work hours
+  trigger:
+    platform: state
+    entity_id: group.main_floor_lights
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition:
+    condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+
+##Turn off main floor lights on weekdays, between 9:20pm and 4am, after being on for 15 minutes
+- alias: Main lights off weekdays night time
+  trigger:
+    platform: state
+    entity_id: group.main_floor_lights
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition:
+      condition: time
+      after: '21:20:00'
+      before: '04:00:00'
+      weekday:
+       - mon
+       - tue
+       - wed
+       - thu
+       - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights

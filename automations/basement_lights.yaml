@@ -1,0 +1,45 @@
+##Turns the basement stair lights off after 5 minutes during daylight hours
+- alias: Basement Stair Lights Off day
+  trigger:
+    platform: state
+    entity_id: switch.basement_stairs_switch_9_0
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunrise
+        after_offset: '00:30:00'
+      - condition: sun
+        before: sunset
+        before_offset: '-00:30:00'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.basement_stairs_switch_9_0
+
+##Turns the basement stair lights off after 15 minutes at night time
+- alias: Basement Stair Lights Off night
+  trigger:
+    platform: state
+    entity_id: switch.basement_stairs_switch_9_0
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-00:30:00'
+      - condition: sun
+        before: sunrise
+        before_offset: '00:30:00'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.basement_stairs_switch_9_0

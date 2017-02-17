@@ -1,0 +1,100 @@
+#Turns on the bedroom TV and changes input to Plex
+bedroom_plex:
+  alias: Bedroom Plex
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.bedroom_tv
+    - delay:
+        seconds: 10
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.master_bedroom
+        source: 'Plex'
+    - delay:
+        seconds: 5
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_up_and_down
+    - delay:
+        seconds: 1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tv_left_and_right      
+    - delay:
+        seconds: 1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tv_left_and_right
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_left_and_right
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tv_up_and_down
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tv_left_and_right
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+
+#Turns on the bedroom TV and changes input to Netflix
+bedroom_netflix:
+  alias: Bedroom Netflix
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.bedroom_tv
+    - delay:
+        seconds: 10
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.master_bedroom
+        source: 'Netflix'
+
+#Turns the bebroom TV off
+bedroom_tv_off:
+  alias: Bedroom TV off
+  sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.tv_ok_and_back
+    - delay:
+        seconds: 1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.bedroom_tv

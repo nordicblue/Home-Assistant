@@ -1,0 +1,23 @@
+##Group and zones customizations
+- entity_id: group.all_automations
+  hidden: false
+- entity_id: group.bedroom_lights
+  emulated_hue: true
+- entity_id: group.all_lights
+  emulated_hue: true
+- entity_id: group.all_devices
+  emulated_hue: true
+- entity_id: group.upstairs_lights
+  emulated_hue: true
+- entity_id: group.main_floor_lights
+  emulated_hue: true
+- entity_id: group.basement_lights
+  emulated_hue: true
+- entity_id: script.bedroom_netflix
+  emulated_hue: true
+- entity_id: script.bedroom_plex
+  emulated_hue: true
+- entity_id: group.all_switches
+  emulated_hue: true
+- entity_id: group.bedroom_devices
+  emulated_hue: true

@@ -1,0 +1,21 @@
+#Z-Wave settings
+usb_path: /dev/zwave
+autoheal: true
+polling_interval: 30000
+customize:
+  light.living_room_dimmer_switch_level_7_0:
+    polling_intensity: 1
+    refresh_value: true
+    delay: 5
+  switch.basement_stairs_switch_9_0:
+    polling_intensity: 1
+    refresh_value: true
+    delay: 5
+  light.dining_level_10_0:
+    polling_intensity: 1
+    refresh_value: true
+    delay: 5
+  light.kitchen_level_12_0:
+    polling_intensity: 1
+    refresh_value: true
+    delay: 5

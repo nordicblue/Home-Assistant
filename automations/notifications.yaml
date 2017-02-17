@@ -1,0 +1,68 @@
+##Notifies when Home Assistant updates are available       
+- alias: Notify when update available
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.html5
+    data_template:
+      message: 'Version {{ states.updater.updater.state }} now available'
+    data:
+      data:
+        tag: 'update-available'
+
+##Notifies when Carla gets to work
+- alias: Carla at work
+  trigger:
+    platform: zone
+    entity_id: device_tracker.carla_note4
+    zone: zone.carla_work
+    event: 'enter'
+  action:
+    service: notify.html5
+    data:
+      message: 'Carla at work'
+      data:
+        tag: 'carla'
+
+##Notifies when Carla gets to work
+- alias: Carla left work
+  trigger:
+    platform: zone
+    entity_id: device_tracker.carla_note4
+    zone: zone.carla_work
+    event: 'leave'
+  action:
+    service: notify.html5
+    data:
+      message: 'Carla left work'
+      data:
+        tag: 'carla'
+
+##Notifies when Carla gets home
+- alias: Carla at home
+  trigger:
+    platform: zone
+    entity_id: device_tracker.carla_note4
+    zone: zone.home
+    event: 'enter'
+  action:
+    service: notify.html5
+    data:
+      message: 'Carla is home'
+      data:
+        tag: 'carla'
+
+##Notifies when Carla leaves home
+- alias: Carla left home
+  trigger:
+    platform: zone
+    entity_id: device_tracker.carla_note4
+    zone: zone.home
+    event: 'leave'
+  action:
+    service: notify.html5
+    data:
+      message: 'Carla left home'
+      data:
+        tag: 'carla'

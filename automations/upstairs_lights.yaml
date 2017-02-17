@@ -1,0 +1,49 @@
+##Turns Victoria's nightlight on at 9pm if either Patrick or Carla is home
+- alias: Victoria nightlight on at 9pm
+  trigger:
+    platform: time
+    after: '21:00:00'
+  condition:
+    condition: state
+    entity_id: group.family
+    state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.victoria_night_light
+
+##Turns off Victoria's nightlight at 1am
+- alias: Victoria nightlight off
+  trigger:
+    platform: time
+    after: '01:00:00'
+  condition:
+    condition: state
+    entity_id: switch.victoria_night_light
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.victoria_night_light
+      
+##Turn off upstairs lights on weekdays, between 9am and 4pm, after being on for 15 minutes
+- alias: Upstairs lights off weekdays during work hours
+  trigger:
+    platform: state
+    entity_id: group.upstairs_lights
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition:
+      condition: time
+      after: '9:00:00'
+      before: '16:00:00'
+      weekday:
+       - mon
+       - tue
+       - wed
+       - thu
+       - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.upstairs_lights

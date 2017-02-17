@@ -1,0 +1,61 @@
+##Sensor customizations
+- entity_id: sensor.cpu_use
+  friendly_name: 'CPU Use %'
+- entity_id: sensor.disk_free_
+  friendly_name: 'Disk free GB'
+- entity_id: sensor.disk_use_
+  friendly_name: 'Disk used %'
+- entity_id: sensor.disk_use__2
+  friendly_name: 'Disk used GB'
+- entity_id: sensor.disk_free_
+  friendly_name: 'Disk free GB'
+- entity_id: sensor.front_door_events
+  friendly_name: 'Front door camera event count'
+- entity_id: sensor.front_door_status
+  friendly_name: 'Front door camera status'
+- entity_id: sensor.ipv4_address_ens160
+  friendly_name: 'IPv4 Address'
+- entity_id: sensor.ram_free
+  friendly_name: 'RAM free MB'
+- entity_id: sensor.ram_use
+  friendly_name: 'RAM Used %'
+- entity_id: sensor.ram_use_2
+  friendly_name: 'RAM free MB'
+- entity_id: sensor.swap_use
+  friendly_name: 'Swap file size GB'
+- entity_id: group.darksky_all
+  emulated_hue: false
+- entity_id: group.darksky_summary
+  emulated_hue: false
+- entity_id: group.front_door
+  emulated_hue: false
+- entity_id: sensor.dark_sky_summary
+  friendly_name: Summary
+- entity_id: sensor.dark_sky_temperature
+  friendly_name: 'Temp.'
+- entity_id: sensor.dark_sky_daily_high_temperature
+  friendly_name: 'Today high'
+- entity_id: sensor.dark_sky_daily_low_temperature
+  friendly_name: 'Today low'
+- entity_id: sensor.dark_sky_minutely_summary
+  friendly_name: Next hour
+- entity_id: sensor.dark_sky_hourly_summary
+  friendly_name: 24 hour
+- entity_id: sensor.dark_sky_daily_summary
+  friendly_name: 7 day
+- entity_id: sensor.dark_sky_humidity
+  friendly_name: Humidity
+- entity_id: sensor.dark_sky_cloud_coverage
+  friendly_name: Cloud
+- entity_id: sensor.dark_sky_precip_probability
+  friendly_name: 'Precip. Prob.'
+- entity_id: sensor.dark_sky_nearest_storm_distance
+  friendly_name: 'Nearest storm'
+- entity_id: sensor.dark_sky_precip
+  friendly_name: 'Precip.'
+- entity_id: sensor.dark_sky_wind_speed
+  friendly_name: 'wind speed'
+- entity_id: sensor.dark_sky_wind_bearing
+  friendly_name: 'wind bearing'
+- entity_id: sensor.yr_symbol
+  friendly_name: Weather

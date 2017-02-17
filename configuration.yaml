@@ -1,0 +1,140 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 64
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include_dir_merge_list customizations
+
+#Simplisafe alarm
+alarm_control_panel:
+  platform: simplisafe
+  username: !secret simplisafe_username
+  password: !secret simplisafe_password
+
+#Home Assistant automations
+automation: !include_dir_merge_list automations
+
+##Camera
+
+camera:
+  - platform: ffmpeg
+    name: Front door
+    input: !secret front_camera_input
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+#All device trackers
+device_tracker:
+  - platform: owntracks
+  - platform: nmap_tracker
+    hosts: !secret home_ip_range
+    track_new_devices: false
+    interval_seconds: 20
+    consider_home: 360
+
+# Discover some devices automatically
+discovery:
+
+#Emulated Hue configuration
+emulated_hue:
+  host_ip: !secret emulated_hue_ip
+  expose_by_default: true
+  exposed_domains:
+    - light
+    - switch
+    - fan
+
+#MQTT fan
+fan: !include fan.yaml
+
+#Camera viewer
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+# Enables the frontend
+frontend:
+
+# All groups and views
+group: !include_dir_merge_named groups
+
+# Enables support for tracking state changes over time.
+history:
+
+# Front end and API
+http:
+  api_password: !secret http_password
+  base_url: !secret http_base_url
+  use_x_forwarded_for: True
+  trusted_networks: !secret home_ip_range
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+
+# View events in a logbook
+logbook:
+  exclude:
+    domains:
+      - sun
+      - sensor
+
+#Media Players
+media_player:
+  - platform: cast
+  - platform: plex
+  - platform: roku
+
+# MQTT servers
+mqtt:
+  broker: !secret mqtt_broker
+  port: 1883
+  client_id: home-assistant-1
+
+#Notification services  
+notify:
+  - name: html5
+    platform: html5
+    gcm_api_key: !secret gcm_key
+    gcm_sender_id: !secret gcm_id
+
+#Where and how long to store history
+recorder:
+  purge_days: 5
+  db_url: !secret mysql_url
+
+#Scripts
+script: !include_dir_merge_named scripts
+
+# Sensors
+sensor: !include sensors.yaml
+
+# Track the sun
+sun:
+
+# All switches 
+switch: !include_dir_merge_list switches
+
+# Text to speech
+tts:
+  platform: google
+
+# Checks for available updates
+updater:
+
+#Zones
+zone:
+  name: Carla Work
+  latitude: !secret carla_work_lat
+  longitude: !secret carla_work_long
+  radius: 150
+  icon: mdi:school
+
+#ZoneMinder Cameras
+zoneminder:
+  host: !secret zm_ip_address
+  username: !secret zm_username
+  password: !secret zm_password
+
+#Z-Wave
+zwave: !include zwave.yaml

@@ -1,0 +1,20 @@
+- platform: mqtt
+  name: 'Bedroom Fan'
+  state_topic: '315mhz/onoff/315mhz/control/fan/1'
+  command_topic: '315mhz/control/fan/1'
+  oscillation_state_topic: '315mhz/onoff/315mhz/control/fan/1'
+  speed_state_topic: '315mhz/speed/315mhz/control/fan/1'
+  speed_command_topic: '315mhz/control/fan/1'
+  qos: 0
+  payload_on: 'on'
+  payload_off: 'off'
+  payload_oscillation_on: 'on'
+  payload_oscillation_off: 'off'
+  payload_low_speed: 'low'
+  payload_medium_speed: 'med'
+  payload_high_speed: 'high'
+  retain: false
+  speeds:
+    - low
+    - medium
+    - high

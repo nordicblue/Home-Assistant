@@ -1,0 +1,8 @@
+##Turns the Bedroom TV off after 2AM, if it is on
+- alias: Bedroom TV off
+  trigger:
+    platform: time
+    after: '02:00:00'
+  action:
+    - service: script.turn_on
+      entity_id: script.bedroom_tv_off

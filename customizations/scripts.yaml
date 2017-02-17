@@ -1,0 +1,5 @@
+##Script customizations
+- entity_id: script.all_scripts
+  hidden: true
+- entity_id: script.all_scripts
+  hidden: true

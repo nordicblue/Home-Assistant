@@ -1,0 +1,107 @@
+#Lock house automation - Turns on the alarm and lights off on main floor and basement
+
+##Lock house down on weekdays at 9:30pm
+- alias: Lock house weekdays
+  trigger:
+    platform: time
+    after: '21:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - sun
+          - mon
+          - tue
+          - wed
+          - thu
+      - condition: state
+        entity_id: group.family
+        state: 'home'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: group.main_floor_lights
+            state: 'on'
+          - condition: state
+            entity_id: alarm_control_panel.simplisafe
+            state: 'disarmed'
+  action:
+    - service: script.turn_on
+      entity_id: script.lock_house_now    
+
+##Asks if I am ready for lock the house down on weekends at 9:30pm
+- alias: Lock house request
+  trigger:
+    platform: time
+    after: '21:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+         - fri
+         - sat
+      - condition: state
+        entity_id: group.family
+        state: 'home'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: group.main_floor_lights
+            state: 'on'
+          - condition: state
+            entity_id: alarm_control_panel.simplisafe
+            state: 'disarmed'
+  action:
+    service: notify.html5
+    data:
+      message: 'Lock house?'
+      data:
+        tag: 'lock-house'
+        actions:
+          - action: lock_house
+            title: 'Yes'
+          - action: cancel_lock_house
+            title: 'No'
+
+##Verifies that the alarm is definitely armed at midnight
+- alias: Verify alarm is on
+  trigger:
+    platform: time
+    after: '00:00:00'
+  condition:
+    condition: state
+    entity_id: alarm_control_panel.simplisafe
+    state: 'disarmed'
+  action:
+    service: notify.html5
+    data:
+      message: 'Lock house?'
+      data:
+        tag: 'lock-house'
+        actions:
+          - action: lock_house
+            title: 'Yes'
+          - action: cancel_lock_house
+            title: 'No'
+
+##Turns off the main floor lights and turns on alarm when lock house response was Yes
+- alias: Lock house now
+  trigger:
+    platform: event
+    event_type: html5_notification.clicked
+    event_data:
+     action: lock_house
+  action:
+    - service: script.turn_on
+      entity_id: script.lock_house_now
+
+##When lock house notification was closed
+- alias: Lock house close
+  trigger:
+    platform: event
+    event_type: html5_notification.closed
+  action:
+    - service: script.turn_on
+      entity_id: script.lock_house_snooze

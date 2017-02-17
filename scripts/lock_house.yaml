@@ -1,0 +1,48 @@
+##Lock house down Immediately. Confirm alarm is on after 10 minutes, or send notification
+lock_house_now:
+  alias: Lock house now
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.main_floor_lights
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.basement_lights
+    - condition: state
+      entity_id: alarm_control_panel.simplisafe
+      state: 'armed_home'
+    - service: alarm_control_panel.alarm_arm_home
+      data:
+        entity_id: alarm_control_panel.simplisafe
+    - delay:
+        minutes: 10
+    - condition: state
+      entity_id: alarm_control_panel.simplisafe
+      state: 'armed_home'
+    - service: notify.html5
+      data:
+        message: 'House not locked'
+        data:
+          tag: 'lock-house'
+          actions:
+            - action: lock_house
+              title: 'Lock'
+            - action: cancel_lock_house
+              title: 'Cancel'
+        
+##Snooze lock house for 20 minutes and send another request to lock house
+lock_house_snooze:
+  alias: Snooze lock house
+  sequence:
+    - delay:
+        minutes: 20
+    - service: notify.html5
+      data:
+        message: 'Lock house?'
+        data:
+          tag: 'lock-house'
+          actions:
+            - action: lock_house
+              title: 'Yes'
+            - action: cancel_lock_house
+              title: 'No'

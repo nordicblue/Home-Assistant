@@ -1,0 +1,5 @@
+##WOL Blackbird
+- platform: wake_on_lan
+  mac_address: !secret blackbird_mac
+  name: Blackbird
+  host: !secret blackbird_ip

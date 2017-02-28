@@ -14,7 +14,7 @@
 - entity_id: switch.makeup_light
   icon: mdi:lamp
   assumed_state: false
-  friendly_name: corner light
+  friendly_name: Corner Light
 - entity_id: switch.victoria_night_light
   icon: mdi:lightbulb
   assumed_state: false

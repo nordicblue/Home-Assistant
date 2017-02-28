@@ -10,7 +10,7 @@ lock_house_now:
         entity_id: group.basement_lights
     - condition: state
       entity_id: alarm_control_panel.simplisafe
-      state: 'armed_home'
+      state: 'disarmed'
     - service: alarm_control_panel.alarm_arm_home
       data:
         entity_id: alarm_control_panel.simplisafe
@@ -18,10 +18,11 @@ lock_house_now:
         minutes: 10
     - condition: state
       entity_id: alarm_control_panel.simplisafe
-      state: 'armed_home'
+      state: 'disarmed'
     - service: notify.html5
       data:
         message: 'House not locked'
+        target: 'Pat S7 Edge'
         data:
           tag: 'lock-house'
           actions:
@@ -39,6 +40,7 @@ lock_house_snooze:
     - service: notify.html5
       data:
         message: 'Lock house?'
+        target: 'Pat S7 Edge'
         data:
           tag: 'lock-house'
           actions:

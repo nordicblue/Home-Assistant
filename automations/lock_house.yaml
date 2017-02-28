@@ -57,6 +57,7 @@
     service: notify.html5
     data:
       message: 'Lock house?'
+      target: 'Pat S7 Edge'
       data:
         tag: 'lock-house'
         actions:
@@ -69,7 +70,7 @@
 - alias: Verify alarm is on
   trigger:
     platform: time
-    after: '00:00:00'
+    after: '23:59:50'
   condition:
     condition: state
     entity_id: alarm_control_panel.simplisafe
@@ -78,6 +79,7 @@
     service: notify.html5
     data:
       message: 'Lock house?'
+      target: 'Pat S7 Edge'
       data:
         tag: 'lock-house'
         actions:
@@ -102,6 +104,8 @@
   trigger:
     platform: event
     event_type: html5_notification.closed
+    event_data:
+      tag: 'lock-house'
   action:
     - service: script.turn_on
       entity_id: script.lock_house_snooze

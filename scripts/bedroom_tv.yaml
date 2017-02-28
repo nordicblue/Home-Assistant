@@ -90,6 +90,9 @@ bedroom_netflix:
 bedroom_tv_off:
   alias: Bedroom TV off
   sequence:
+    - condition: state
+      entity_id: switch.bedroom_tv
+      state: 'on'
     - service: switch.turn_on
       data:
         entity_id: switch.tv_ok_and_back

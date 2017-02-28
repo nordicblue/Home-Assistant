@@ -38,16 +38,25 @@ basement_view:
   entities:
     - group.basement_lights
     - media_player.family_room
-config_view:
-  name: Config
+devices_view:
+  name: devices
+  view: yes
+  entities:
+    - group.blackbird
+    - group.zoneminder
+    - group.atlantia
+    - group.plex
+camera_view:
+  name: Cameras
   view: yes
   entities:
     - camera.front_door
-    - group.zoneminder
-    - group.atlantia
+weather_view:
+  name: Config
+  view: yes
+  entities:
     - group.environment
-    - group.darksky_all
-    - group.plex
+    - group.darksky_all    
 automations:
   name: Auto
   view: yes

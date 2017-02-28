@@ -9,6 +9,7 @@
       message: 'Version {{ states.updater.updater.state }} now available'
     data:
       data:
+        icon: '/local/carla.png'
         tag: 'update-available'
 
 ##Notifies when Carla gets to work
@@ -22,7 +23,11 @@
     service: notify.html5
     data:
       message: 'Carla at work'
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
       data:
+        icon: '/local/carla.png'
         tag: 'carla'
 
 ##Notifies when Carla gets to work
@@ -36,7 +41,11 @@
     service: notify.html5
     data:
       message: 'Carla left work'
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
       data:
+        icon: '/local/carla.png'
         tag: 'carla'
 
 ##Notifies when Carla gets home
@@ -50,7 +59,11 @@
     service: notify.html5
     data:
       message: 'Carla is home'
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
       data:
+        icon: '/local/carla.png'
         tag: 'carla'
 
 ##Notifies when Carla leaves home
@@ -64,5 +77,9 @@
     service: notify.html5
     data:
       message: 'Carla left home'
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
       data:
+        icon: '/local/carla.png'
         tag: 'carla'

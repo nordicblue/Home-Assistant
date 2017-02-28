@@ -1,5 +1,5 @@
 ##Turns on living room and kitchen lights, 20 minutes before sunset, if Patrick or Carla is home
-- alias: Main floor lights on
+- alias: kitchen and living room lights on sunset
   trigger:
     platform: sun
     event: sunset
@@ -10,54 +10,19 @@
       - condition: state
         entity_id: group.family
         state: 'home'
-      - condition: state
-        entity_id: group.main_floor_lights
-        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: light.living_room_dimmer_switch_level_7_0
+            state: 'off'
+          - condition: state
+            entity_id: light.kitchen_level_12_0
+            state: 'off'
   action:
     - service: homeassistant.turn_on
       entity_id: 
         - light.living_room_dimmer_switch_level_7_0
         - light.kitchen_level_12_0
-
-##Turns off main floor lights 30 minutes after sunrise
-- alias: Main floor lights off after sunrise
-  trigger:
-    platform: sun
-    event: 'sunrise'
-    offset: '00:30:00'
-  condition:
-    condition: state
-    entity_id: group.main_floor_lights
-    state: 'on'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: group.main_floor_lights
-
-##Turns off main floor lights off when Carla leaves in the mornings
-- alias: Main floor lights off when Carla leaves
-  trigger:
-    platform: zone
-    entity_id: device_tracker.carla_note4
-    zone: zone.home
-    event: 'leave'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.main_floor_lights
-        state: 'on'
-      - condition: time
-        after: '06:30:00'
-        before: '08:30:00'
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-  action:
-    - service: homeassistant.turn_off
-      entity_id: group.main_floor_lights
 
 ##Turns off the main floor lights at 10:00am on weekdays
 - alias: Main floor lights off weekdays 10am

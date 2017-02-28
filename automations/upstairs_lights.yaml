@@ -23,7 +23,29 @@
   action:
     - service: homeassistant.turn_off
       entity_id: switch.victoria_night_light
-      
+
+##Turn off upstairs lights on weekdays, at 9am
+- alias: Upstairs lights off weekdays at 9am
+  trigger:
+    platform: time
+    after: '09:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.upstairs_lights
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.upstairs_lights
+
 ##Turn off upstairs lights on weekdays, between 9am and 4pm, after being on for 15 minutes
 - alias: Upstairs lights off weekdays during work hours
   trigger:
@@ -37,7 +59,7 @@
   condition:
       condition: time
       after: '9:00:00'
-      before: '16:00:00'
+      before: '17:30:00'
       weekday:
        - mon
        - tue

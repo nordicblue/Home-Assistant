@@ -1,38 +1,38 @@
 #MQTT 433mhz Zap switches
 - platform: mqtt
-  name: "Makeup Light"
-  command_topic: "zap/control/switch/4"
-  payload_on: "on"
-  payload_off: "off"
+  name: 'Makeup Light'
+  command_topic: 'zap/control/switch/4'
+  payload_on: 'on'
+  payload_off: 'off'
   optimistic: true
   qos: 0
 - platform: mqtt
-  name: "Coffee Maker"
-  command_topic: "zap/control/switch/1"
-  payload_on: "on"
-  payload_off: "off"
+  name: 'Coffee Maker'
+  command_topic: 'zap/control/switch/1'
+  payload_on: 'on'
+  payload_off: 'off'
   optimistic: true
   qos: 0
 - platform: mqtt
-  name: "Victoria Night Light"
-  command_topic: "zap/control/switch/2"
-  payload_on: "on"
-  payload_off: "off"
+  name: 'Victoria Night Light'
+  command_topic: 'zap/control/switch/2'
+  payload_on: 'on'
+  payload_off: 'off'
   optimistic: true
   qos: 0
 - platform: mqtt
-  name: "Humidifier"
-  command_topic: "zap/control/switch/3"
-  payload_on: "on"
-  payload_off: "off"
+  name: 'Humidifier'
+  command_topic: 'zap/control/switch/3'
+  payload_on: 'on'
+  payload_off: 'off'
   optimistic: true
   qos: 0
 #MQTT 315mhz switches
 - platform: mqtt
-  name: "Fan Light"
-  command_topic: "315mhz/control/light/1"
-  state_topic: "315mhz/onoff/315mhz/control/light/1"
-  payload_on: "on"
-  payload_off: "off"
-  retain: false
+  name: 'Fan Light'
+  command_topic: '315mhz/control/light/1'
+  state_topic: '315mhz/state/light/1'
+  payload_on: 1
+  payload_off: 0
+  retain: true
   qos: 0

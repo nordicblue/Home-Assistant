@@ -1,4 +1,4 @@
-##Turns off all lights 20 minutes after sunrise
+##Turns off all lights 30 minutes after sunrise
 - alias: All lights off
   trigger:
     platform: sun
@@ -16,5 +16,34 @@
   action:
     - service: homeassistant.turn_off
       entity_id: 
+        - group.main_floor_lights
+        - group.upstairs_lights
+
+##Turns off the all lights at 10:00am on weekdays
+- alias: All lights off weekdays 10am
+  trigger:
+    platform: time
+    after: '10:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - sun
+          - mon
+          - tue
+          - wed
+          - thu
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: group.main_floor_lights
+            state: 'on'
+          - condition: state
+            entity_id: group.upstairs_lights
+            state: 'on'        
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
         - group.main_floor_lights
         - group.upstairs_lights

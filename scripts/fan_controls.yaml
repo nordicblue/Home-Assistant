@@ -1,0 +1,19 @@
+#Pseudo fan controls for Alexa via scripts. Fan low is controlled by simply turning fan on.
+
+##Turn fan on medium
+fan_medium:
+  alias: Fan Medium
+  sequence:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.bedroom_fan
+        speed: medium
+
+##Turn fan on high
+fan_high:
+  alias: Fan High
+  sequence:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.bedroom_fan
+        speed: high

@@ -88,6 +88,10 @@ zoneminder:
   entities:
     - sensor.front_door_status
     - sensor.front_door_events
+blackbird:
+  name: Blackbird
+  entities:
+    - switch.blackbird
 plex:
   name: PLEX Server
   entities:

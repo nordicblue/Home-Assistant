@@ -2,7 +2,7 @@ homeassistant:
   name: Home
   latitude: !secret latitude_home
   longitude: !secret longitude_home
-  elevation: 64
+  elevation: 125.214
   unit_system: imperial
   time_zone: America/New_York
   customize: !include_dir_merge_list customizations
@@ -29,6 +29,7 @@ conversation:
 #All device trackers
 device_tracker:
   - platform: owntracks
+    max_gps_accuracy: 100
   - platform: nmap_tracker
     hosts: !secret home_ip_range
     track_new_devices: false

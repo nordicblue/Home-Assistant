@@ -1,31 +1,5 @@
-##Turns Victoria's nightlight on at 9pm if either Patrick or Carla is home
-- alias: Victoria nightlight on at 9pm
-  trigger:
-    platform: time
-    after: '21:00:00'
-  condition:
-    condition: state
-    entity_id: group.family
-    state: 'home'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: switch.victoria_night_light
-
-##Turns off Victoria's nightlight at 1am
-- alias: Victoria nightlight off
-  trigger:
-    platform: time
-    after: '01:00:00'
-  condition:
-    condition: state
-    entity_id: switch.victoria_night_light
-    state: 'on'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: switch.victoria_night_light
-
-##Turn off upstairs lights on weekdays, at 9am
-- alias: Upstairs lights off weekdays at 9am
+##Turn off all upstairs lights at 9am on weekdays
+- alias: Upstairs lights off weekdays
   trigger:
     platform: time
     after: '09:00:00'
@@ -33,7 +7,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: group.upstairs_lights
+        entity_id: group.all_upstairs_lights
         state: 'on'
       - condition: time
         weekday:
@@ -44,13 +18,14 @@
           - fri
   action:
     - service: homeassistant.turn_off
-      entity_id: group.upstairs_lights
+      entity_id: group.all_upstairs_lights
 
-##Turn off upstairs lights on weekdays, between 9am and 4pm, after being on for 15 minutes
-- alias: Upstairs lights off weekdays during work hours
+##Turn off all upstairs lights on weekdays, between 9am and 4pm, after being on for 15 minutes
+- alias: Upstairs lights work day timer
   trigger:
     platform: state
-    entity_id: group.upstairs_lights
+    entity_id: group.all_upstairs_lights
+    from: 'off'
     to: 'on'
     for:
       hours: 0
@@ -68,4 +43,42 @@
        - fri
   action:
     - service: homeassistant.turn_off
-      entity_id: group.upstairs_lights
+      entity_id: group.all_upstairs_lights
+
+##Turns the up stairs hallway lights off after 15 minutes during daylight hours
+- alias: Up Stairs Lights Off day
+  trigger:
+    platform: state
+    entity_id: light.up_stairs_hallway_level_15_0
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+    condition: time
+    after: '08:30:00'
+    before: '15:59:59' 
+  action:
+    - service: light.turn_off
+      entity_id: light.up_stairs_hallway_level_15_0
+
+##Turns the up stairs hallway lights off after 15 minutes at night time
+- alias: Up Stair Lights Off night
+  trigger:
+    platform: state
+    entity_id: light.up_stairs_hallway_level_15_0
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition:
+    condition: time
+    after: '16:00:00'
+    before: '08:29:59' 
+  action:
+    - service: light.turn_off
+      entity_id: light.up_stairs_hallway_level_15_0

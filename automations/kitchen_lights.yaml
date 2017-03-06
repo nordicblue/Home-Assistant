@@ -1,0 +1,89 @@
+##Turns kitchen sink light, 20 minutes before sunset, if Patrick or Carla is home
+- alias: Sink nightlight on sunset
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:20:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family
+        state: 'home'
+      - condition: state
+        entity_id: light.kitchen_sink_level_13_0
+        state: 'off'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.kitchen_nightlight
+
+##Turn sink light on 100% brightness with kitchen lights
+- alias: Sink light on
+  trigger:
+    platform: state
+    entity_id: light.kitchen_level_12_0
+    from: 'off'
+    to: 'on'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.kitchen_sink_light_on
+
+##Turn kitchen sink light to nightlight when kitchen lights turn off
+- alias: Sink nightlight on
+  trigger:
+    platform: state
+    entity_id: light.kitchen_level_12_0
+    from: 'on'
+    to: 'off'    
+  condition:
+    condition: time
+    after: '16:00:00'
+    before: '01:59:59' 
+  action:
+    - service: scene.turn_on
+      entity_id: scene.kitchen_nightlight
+
+##Turn kitchen sink light off when kitchen lights turn off between 2am and 3pm
+- alias: Sink light off
+  trigger:
+    platform: state
+    entity_id: light.kitchen_level_12_0
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition:
+    condition: time
+    after: '02:00:00'
+    before: '15:59:59' 
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen_sink_level_13_0
+
+##Turns kitchen sink light off 2am
+- alias: kitchen sink light off 2am
+  trigger:
+    platform: time
+    after: '02:00:00'
+  condition:
+    condition: state
+    entity_id: light.kitchen_sink_level_13_0
+    state: 'on'        
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen_sink_level_13_0
+
+##Turns kitchen sink nightlight on 6am
+- alias: kitchen sink light on 6am
+  trigger:
+    platform: time
+    after: '06:00:00'
+  condition:
+    condition: state
+    entity_id: light.kitchen_sink_level_13_0
+    state: 'off'        
+  action:
+    - service: scene.turn_on
+      entity_id: scene.kitchen_nightlight

@@ -30,8 +30,9 @@
 #MQTT 315mhz switches
 - platform: mqtt
   name: 'Fan Light'
-  command_topic: '315mhz/control/light/1'
-  state_topic: '315mhz/state/light/1'
+  command_topic: 'master/control/light/1'
+  state_topic: 'master/state'
+  value_template: '{{ value_json.light }}'
   payload_on: 1
   payload_off: 0
   retain: true

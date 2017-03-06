@@ -1,10 +1,13 @@
 - platform: mqtt
   name: 'Bedroom Fan'
-  state_topic: '315mhz/state/fan/1'
-  command_topic: '315mhz/control/fan/1'
-  oscillation_state_topic: '315mhz/state/fan/1'
-  speed_state_topic: '315mhz/state/fan/speed/1'
-  speed_command_topic: '315mhz/control/fan/1'
+  command_topic: 'master/control/fan/1'
+  state_topic: 'master/state'
+  state_value_template: '{{ value_json.fanOn }}'
+  oscillation_state_topic: 'master/state'
+  oscillation_value_template: '{{ value_json.fanOn }}'
+  speed_command_topic: 'master/control/fan/1'
+  speed_state_topic: 'master/state'
+  speed_value_template: '{{ value_json.fanSpeed }}'
   qos: 0
   payload_on: 1
   payload_off: 0

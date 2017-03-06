@@ -3,20 +3,16 @@
   trigger:
     platform: state
     entity_id: switch.basement_stairs_switch_9_0
+    from: 'off'
     to: 'on'
     for:
       hours: 0
       minutes: 5
       seconds: 0
   condition:
-    condition: and
-    conditions:
-      - condition: sun
-        after: sunrise
-        after_offset: '00:30:00'
-      - condition: sun
-        before: sunset
-        before_offset: '-00:30:00'
+    condition: time
+    after: '08:30:00'
+    before: '15:59:59' 
   action:
     - service: homeassistant.turn_off
       entity_id: switch.basement_stairs_switch_9_0
@@ -26,20 +22,16 @@
   trigger:
     platform: state
     entity_id: switch.basement_stairs_switch_9_0
+    from: 'off'
     to: 'on'
     for:
       hours: 0
       minutes: 15
       seconds: 0
   condition:
-    condition: and
-    conditions:
-      - condition: sun
-        after: sunset
-        after_offset: '-00:30:00'
-      - condition: sun
-        before: sunrise
-        before_offset: '00:30:00'
+    condition: time
+    after: '16:00:00'
+    before: '08:29:59' 
   action:
     - service: homeassistant.turn_off
       entity_id: switch.basement_stairs_switch_9_0

@@ -7,10 +7,6 @@
     service: notify.html5
     data_template:
       message: 'Version {{ states.updater.updater.state }} now available'
-    data:
-      data:
-        icon: '/local/carla.png'
-        tag: 'update-available'
 
 ##Notifies when Carla gets to work
 - alias: Carla at work
@@ -30,7 +26,7 @@
         icon: '/local/carla.png'
         tag: 'carla'
 
-##Notifies when Carla gets to work
+##Notifies when Carla leaves work
 - alias: Carla left work
   trigger:
     platform: zone
@@ -66,20 +62,38 @@
         icon: '/local/carla.png'
         tag: 'carla'
 
-##Notifies when Carla leaves home
-- alias: Carla left home
+##Notifies when Patrick gets home
+- alias: Patrick at home
   trigger:
     platform: zone
-    entity_id: device_tracker.carla_note4
+    entity_id: device_tracker.patrick_pats7edge
+    zone: zone.home
+    event: 'enter'
+  action:
+    service: notify.html5
+    data:
+      message: 'Patrick is home'
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
+      data:
+        icon: '/local/patrick.png'
+        tag: 'patrick'
+
+##Notifies when Patrick leaves home
+- alias: Patrick left home
+  trigger:
+    platform: zone
+    entity_id: device_tracker.patrick_pats7edge
     zone: zone.home
     event: 'leave'
   action:
     service: notify.html5
     data:
-      message: 'Carla left home'
+      message: 'Patrick left home'
       target:
         - 'Pat S7 Edge'
         - 'Blackbird Chrome'
       data:
-        icon: '/local/carla.png'
-        tag: 'carla'
+        icon: '/local/patrick.png'
+        tag: 'patrick'

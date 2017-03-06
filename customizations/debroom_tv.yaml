@@ -1,14 +1,14 @@
 ##Bedroom TV customizations
-- entity_id: switch.tv_up_and_down
+switch.tv_up_and_down:
   emulated_hue: false
   hidden: true
-- entity_id: switch.tv_left_and_right
+switch.tv_left_and_right:
   emulated_hue: false
   hidden: true
-- entity_id: switch.tv_ok_and_back
+switch.tv_ok_and_back:
   emulated_hue: false
   hidden: true
-- entity_id: script.bedroom_netflix
+script.bedroom_netflix:
   emulated_hue: true
-- entity_id: script.bedroom_plex
+script.bedroom_plex:
   emulated_hue: true

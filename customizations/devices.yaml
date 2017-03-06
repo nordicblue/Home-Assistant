@@ -1,18 +1,18 @@
 ##Devices
-- entity_id: switch.coffee_maker
-  icon: mdi:coffee
+switch.coffee_maker:
+  icon: 'mdi:coffee'
   assumed_state: false
   friendly_name: Coffee Machine
-- entity_id: switch.bedroom_tv
-  icon: mdi:television
+switch.bedroom_tv:
+  icon: 'mdi:television'
   assumed_state: false
-- entity_id: switch.humidifier
-  icon: mdi:water
+switch.humidifier:
+  icon: 'mdi:water'
   assumed_state: false
   friendly_name: Humidifier
-- entity_id: fan.bedroom_fan
-  icon: mdi:fan
+fan.bedroom_fan:
+  icon: 'mdi:fan'
   assumed_state: false
   friendly_name: Fan
-- entity_id: switch.blackbird
+switch.blackbird:
   emulated_hue: false

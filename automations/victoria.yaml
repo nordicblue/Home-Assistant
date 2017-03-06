@@ -1,0 +1,25 @@
+##Turns Victoria's nightlight on at 9pm if either Patrick or Carla is home
+- alias: Victoria nightlight on at 9pm
+  trigger:
+    platform: time
+    after: '21:00:00'
+  condition:
+    condition: state
+    entity_id: group.family
+    state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: switch.victoria_night_light
+
+##Turns off Victoria's nightlight at 1am
+- alias: Victoria nightlight off
+  trigger:
+    platform: time
+    after: '1:00:00'
+  condition:
+    condition: state
+    entity_id: switch.victoria_night_light
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.victoria_night_light

@@ -11,24 +11,12 @@
     - service: homeassistant.turn_off
       entity_id: switch.humidifier
 
-##Turns the fan off after 9AM, if it is on
-- alias: Fan off
-  trigger:
-    platform: time
-    after: '09:00:00'
-  condition:
-    condition: state
-    entity_id: switch.fan
-    state: 'on'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: fan.bedroom_fan
-
 ##Turns off the coffee machine 30 minutes after it is turned on
 - alias: Coffee machine timer
   trigger:
     platform: state
     entity_id: switch.coffee_maker
+    from: 'off'
     to: 'on'
     for:
       hours: 0

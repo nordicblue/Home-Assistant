@@ -1,7 +1,0 @@
-#Home Assistant devices trackers
-- platform: owntracks
-- platform: nmap_tracker
-  hosts: !secret nmap_ip_range
-  track_new_devices: false
-  interval_seconds: 20
-  consider_home: 360

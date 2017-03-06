@@ -1,4 +1,4 @@
 ##Zone customizations
-- entity_id: zone.carla_work
-  friendly_name: 'Work (Carla)'
+zone.carla_work:
+  friendly_name: Work (Carla)
   emulated_hue: false

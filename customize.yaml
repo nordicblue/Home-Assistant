@@ -1,0 +1,143 @@
+switch.tv_up_and_down:
+  emulated_hue: false
+  hidden: true
+switch.tv_left_and_right:
+  emulated_hue: false
+  hidden: true
+switch.tv_ok_and_back:
+  emulated_hue: false
+  hidden: true
+script.bedroom_netflix:
+  emulated_hue: true
+script.bedroom_plex:
+  emulated_hue: true
+switch.coffee_maker:
+  icon: 'mdi:coffee'
+  assumed_state: false
+  friendly_name: Coffee Machine
+switch.bedroom_tv:
+  icon: 'mdi:television'
+  assumed_state: false
+switch.humidifier:
+  icon: 'mdi:water'
+  assumed_state: false
+  friendly_name: Humidifier
+fan.bedroom_fan:
+  icon: 'mdi:fan'
+  assumed_state: false
+  friendly_name: Fan
+switch.blackbird:
+  emulated_hue: false
+group.all_automations:
+  hidden: false
+group.bedroom_lights:
+  emulated_hue: true
+group.all_lights:
+  emulated_hue: true
+group.all_devices:
+  emulated_hue: true
+group.upstairs_lights:
+  emulated_hue: true
+group.main_floor_lights:
+  emulated_hue: true
+group.basement_lights:
+  emulated_hue: true
+group.all_switches:
+  emulated_hue: true
+group.bedroom_devices:
+  emulated_hue: true
+light.living_room_dimmer_switch_level_7_0:
+  icon: 'mdi:spotlight-beam'
+  friendly_name: Living Room Lights
+light.kitchen_level_12_0:
+  icon: 'mdi:spotlight-beam'
+  friendly_name: Kitchen Lights
+light.kitchen_sink_level_13_0:
+  icon: 'mdi:spotlight-beam'
+  friendly_name: Sink Light
+light.dining_level_10_0:
+  icon: 'mdi:spotlight-beam'
+  friendly_name: Dining Lights
+switch.basement_stairs_switch_9_0:
+  icon: 'mdi:spotlight-beam'
+  friendly_name: Basement Stair Lights
+switch.makeup_light:
+  icon: 'mdi:lamp'
+  assumed_state: false
+  friendly_name: Corner Light
+switch.victoria_night_light:
+  icon: 'mdi:lightbulb'
+  assumed_state: false
+  friendly_name: Victoria Night Light
+switch.fan_light:
+  icon: 'mdi:spotlight'
+  assumed_state: false
+  friendly_name: Ceiling Light
+script.lock_house_now:
+  emulated_hue: true
+  friendly_name: Lock House
+script.fan_medium:
+  emulated_hue: true
+script.fan_high:
+  emulated_hue: true
+sensor.cpu_use:
+  friendly_name: CPU Use %
+sensor.disk_free_:
+  friendly_name: Disk free GB
+sensor.disk_use_:
+  friendly_name: Disk used %
+sensor.disk_use__2:
+  friendly_name: Disk used GB
+sensor.front_door_events:
+  friendly_name: Front door camera event count
+sensor.front_door_status:
+  friendly_name: Front door camera status
+sensor.ipv4_address_ens160:
+  friendly_name: IPv4 Address
+sensor.ram_free:
+  friendly_name: RAM free MB
+sensor.ram_use:
+  friendly_name: RAM Used %
+sensor.ram_use_2:
+  friendly_name: RAM free MB
+sensor.swap_use:
+  friendly_name: Swap file size GB
+group.darksky_all:
+  emulated_hue: false
+group.darksky_summary:
+  emulated_hue: false
+group.front_door:
+  emulated_hue: false
+sensor.dark_sky_summary:
+  friendly_name: Summary
+sensor.dark_sky_temperature:
+  friendly_name: Temp.
+sensor.dark_sky_daily_high_temperature:
+  friendly_name: Today high
+sensor.dark_sky_daily_low_temperature:
+  friendly_name: Today low
+sensor.dark_sky_minutely_summary:
+  friendly_name: Next hour
+sensor.dark_sky_hourly_summary:
+  friendly_name: 24 hour
+sensor.dark_sky_daily_summary:
+  friendly_name: 7 day
+sensor.dark_sky_humidity:
+  friendly_name: Humidity
+sensor.dark_sky_cloud_coverage:
+  friendly_name: Cloud
+sensor.dark_sky_precip_probability:
+  friendly_name: Precip. Prob.
+sensor.dark_sky_nearest_storm_distance:
+  friendly_name: Nearest storm
+sensor.dark_sky_precip:
+  friendly_name: Precip.
+sensor.dark_sky_wind_speed:
+  friendly_name: wind speed
+sensor.dark_sky_wind_bearing:
+  friendly_name: wind bearing
+sensor.yr_symbol:
+  friendly_name: Weather
+zone.carla_work:
+  friendly_name: Work (Carla)
+  emulated_hue: false

@@ -1,0 +1,15 @@
+#Z-Wave device configuration
+light.living_room_dimmer_switch_level_7_0:
+  polling_intensity: 1
+switch.basement_stairs_switch_9_0:
+  polling_intensity: 1
+light.dining_level_10_0:
+  polling_intensity: 1
+light.kitchen_level_12_0:
+  polling_intensity: 1
+light.kitchen_sink_level_13_0:
+  polling_intensity: 1
+light.hallway_level_14_0:
+  polling_intensity: 1
+light.up_stairs_hallway_level_15_0:
+  polling_intensity: 1

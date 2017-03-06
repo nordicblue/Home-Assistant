@@ -1,0 +1,59 @@
+#Bedroom light automations
+
+##Motion activated bedroom lights if the room is too dark and it is between 10am and 9:15pm
+- alias: Bedroom motion ceiling light
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_motion
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '10:00:00'
+        before: '21:15:00'
+      - condition: state
+        entity_id: group.bedroom_lights
+        state: 'off'
+      - condition: numeric_state
+        entity_id: sensor.bedroom_light_level
+        below: 25
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.bedroom_lights
+
+##Turn bedroom lights off, if no motion is detected within 20 minutes
+- alias: No motion bedroom lights off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bedroom_motion
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.bedroom_lights
+        state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.bedroom_lights
+
+##Turn bedroom lights off, when light level reaches above 49% and it is after sunrise (+1hr) and before sunset (-1hr)
+- alias: No motion bedroom lights off
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.bedroom_light_level
+    above: 49
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.bedroom_lights

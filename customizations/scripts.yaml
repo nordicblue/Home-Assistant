@@ -1,8 +1,9 @@
 ##Script customizations
-- entity_id: script.lock_house_now
+script.lock_house_now:
   emulated_hue: true
-  friendly_name: 'Lock House'
-- entity_id: script.fan_medium
+  friendly_name: Lock House
+  icon: 'mdi:lock'
+script.fan_medium:
   emulated_hue: true
-- entity_id: script.fan_high
+script.fan_high:
   emulated_hue: true

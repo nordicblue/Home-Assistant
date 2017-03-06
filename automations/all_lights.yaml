@@ -1,23 +1,27 @@
-##Turns off all lights 30 minutes after sunrise
+##Turns off all lights 45 minutes after sunrise
 - alias: All lights off
   trigger:
     platform: sun
     event: 'sunrise'
-    offset: '00:30:00'
+    offset: '00:45:00'
   condition:
     condition: or
     conditions:
       - condition: state
-        entity_id: group.all_lights
+        entity_id: group.main_floor_lights
         state: 'on'
       - condition: state
-        entity_id: group.all_switches
+        entity_id: group.all_upstairs_lights
+        state: 'on'
+      - condition: state
+        entity_id: light.kitchen_sink_level_13_0
         state: 'on'
   action:
     - service: homeassistant.turn_off
       entity_id: 
         - group.main_floor_lights
-        - group.upstairs_lights
+        - group.all_upstairs_lights
+        - light.kitchen_sink_level_13_0
 
 ##Turns off the all lights at 10:00am on weekdays
 - alias: All lights off weekdays 10am
@@ -40,10 +44,14 @@
             entity_id: group.main_floor_lights
             state: 'on'
           - condition: state
-            entity_id: group.upstairs_lights
-            state: 'on'        
+            entity_id: group.all_upstairs_lights
+            state: 'on'
+          - condition: state
+            entity_id: light.kitchen_sink_level_13_0
+            state: 'on'            
   action:
     - service: homeassistant.turn_off
       entity_id:
         - group.main_floor_lights
-        - group.upstairs_lights
+        - group.all_upstairs_lights
+        - light.kitchen_sink_level_13_0

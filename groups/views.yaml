@@ -28,6 +28,7 @@ upstairs_view:
   entities:
     - group.bedroom_lights
     - group.bedroom_devices
+    - group.bedroom_sensors
     - media_player.master_bedroom
     - media_player.chromecast
     - group.victoria
@@ -52,7 +53,7 @@ camera_view:
   entities:
     - camera.front_door
 weather_view:
-  name: Config
+  name: Weather
   view: yes
   entities:
     - group.environment

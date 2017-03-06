@@ -18,4 +18,12 @@ customize:
   light.kitchen_level_12_0:
     polling_intensity: 1
     refresh_value: true
+    delay: 6
+  light.kitchen_sink_level_13_0:
+    polling_intensity: 1
+    refresh_value: true
+    delay: 5
+  light.hallway_level_14_0:
+    polling_intensity: 1
+    refresh_value: true
     delay: 5

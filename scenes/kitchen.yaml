@@ -1,0 +1,10 @@
+- name: Kitchen nightlight
+  entities:
+    light.kitchen_sink_level_13_0:
+      state: on
+      brightness: 95
+- name: Kitchen sink light on
+  entities:
+    light.kitchen_sink_level_13_0:
+      state: on
+      brightness: 255

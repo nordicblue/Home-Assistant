@@ -1,0 +1,26 @@
+##Turns on main floor hallway lights when someone gets home after sunset with 45 minute offset
+- alias: Hallway lights on when family arrives
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-0:45:00'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: light.hallway_level_14_0
+            state: 'off'
+          - condition: state
+            entity_id: light.kitchen_sink_level_13_0
+            state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - light.hallway_level_14_0
+        - light.kitchen_sink_level_13_0

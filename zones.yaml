@@ -1,0 +1,5 @@
+name: Carla Work
+latitude: !secret carla_work_lat
+longitude: !secret carla_work_long
+radius: 200
+icon: mdi:school

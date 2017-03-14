@@ -1,0 +1,6 @@
+##PLEX monitor
+- platform: plex
+  host: !secret plex_ip
+  server: Pegasus
+  username: !secret plex_username
+  password: !secret plex_password

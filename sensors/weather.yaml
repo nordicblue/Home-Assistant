@@ -1,0 +1,25 @@
+## Weather by Norwegian Meteorological Institute and the NRK
+- platform: yr
+  monitored_conditions:
+    - symbol
+
+##The weather forecast delivered by Dark Sky
+- platform: darksky
+  api_key: !secret darksky_api_key
+  update_inverval: '00:05'
+  monitored_conditions:
+    - summary
+    - icon
+    - temperature
+    - temperature_max
+    - temperature_min
+    - humidity
+    - cloud_cover
+    - precip_probability
+    - nearest_storm_distance
+    - precip_type
+    - wind_speed
+    - wind_bearing
+    - hourly_summary
+    - minutely_summary
+    - daily_summary

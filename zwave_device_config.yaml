@@ -13,3 +13,5 @@ light.hallway_level_14_0:
   polling_intensity: 1
 light.up_stairs_hallway_level_15_0:
   polling_intensity: 1
+switch.back_porch_switch_16_0:
+  polling_intensity: 1

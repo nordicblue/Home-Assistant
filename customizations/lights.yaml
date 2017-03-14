@@ -33,3 +33,7 @@ light.up_stairs_hallway_level_15_0:
   icon: 'mdi:spotlight-beam'
   emulated_hue_name: Upstairs Lights
   friendly_name: Upstairs Hallway Lights
+switch.back_porch_switch_16_0:
+  icon: 'mdi:lamp'
+  friendly_name: Back Porch Light
+  

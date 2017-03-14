@@ -1,0 +1,9 @@
+#Disable motion
+disable_motion:
+  alias: Disable motion
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.bedroom_lights
+    - delay:
+        minutes: 30

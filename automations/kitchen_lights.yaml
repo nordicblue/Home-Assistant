@@ -1,9 +1,9 @@
-##Turns kitchen sink light, 20 minutes before sunset, if Patrick or Carla is home
+##Turns kitchen sink light, 40 minutes before sunset, if Patrick or Carla is home
 - alias: Sink nightlight on sunset
   trigger:
     platform: sun
     event: sunset
-    offset: '-00:20:00'
+    offset: '-00:40:00'
   condition:
     condition: and
     conditions:
@@ -18,7 +18,7 @@
       entity_id: scene.kitchen_nightlight
 
 ##Turn sink light on 100% brightness with kitchen lights
-- alias: Sink light on
+- alias: Sink light on with kitchen lights
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0
@@ -29,7 +29,7 @@
       entity_id: scene.kitchen_sink_light_on
 
 ##Turn kitchen sink light to nightlight when kitchen lights turn off
-- alias: Sink nightlight on
+- alias: Sink nightlight on when kitchen lights off
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0
@@ -44,7 +44,7 @@
       entity_id: scene.kitchen_nightlight
 
 ##Turn kitchen sink light off when kitchen lights turn off between 2am and 3pm
-- alias: Sink light off
+- alias: Sink light off when kitchen light off 2am to 3pm
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0

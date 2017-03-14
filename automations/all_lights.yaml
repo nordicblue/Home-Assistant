@@ -1,5 +1,5 @@
 ##Turns off all lights 45 minutes after sunrise
-- alias: All lights off
+- alias: All lights off 45 min after sunrise
   trigger:
     platform: sun
     event: 'sunrise'

@@ -3,6 +3,10 @@ script.lock_house_now:
   emulated_hue: true
   friendly_name: Lock House
   icon: 'mdi:lock'
+script.disable_motion:
+  emulated_hue: true
+  emulated_hue_name: Motion
+  icon: 'mdi:close-circle'
 script.fan_medium:
   emulated_hue: true
 script.fan_high:

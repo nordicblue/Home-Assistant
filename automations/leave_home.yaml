@@ -1,0 +1,30 @@
+##Turns off all lights 15 minutes after family leaves
+- alias: All lights off when family leaves
+  trigger:
+    platform: state
+    entity_id: group.family
+    from: 'home'
+    to: 'not_home'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.main_floor_lights
+        state: 'on'
+      - condition: state
+        entity_id: group.all_upstairs_lights
+        state: 'on'
+      - condition: state
+        entity_id: group.basement_lights
+        state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: 
+        - group.main_floor_lights
+        - group.all_upstairs_lights
+        - group.basement_lights
+

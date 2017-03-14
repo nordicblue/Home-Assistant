@@ -19,15 +19,7 @@ alarm_control_panel:
 automation: !include_dir_merge_list automations
 
 ##Binary sensors
-binary_sensor:
-  - platform: mqtt
-    state_topic: 'master/sensor'
-    name: 'Bedroom motion'
-    value_template: '{{ value_json.pir }}'
-    qos: 0
-    payload_on: 1
-    payload_off: 0
-    device_class: motion
+binary_sensor: !include_dir_merge_list binary_sensors
 
 ##Camera
 camera:
@@ -123,7 +115,7 @@ scene: !include_dir_merge_list scenes
 script: !include_dir_merge_named scripts
 
 # Sensors
-sensor: !include sensors.yaml
+sensor: !include_dir_merge_list sensors
 
 # Track the sun
 sun:
@@ -139,12 +131,7 @@ tts:
 updater:
 
 #Zones
-zone:
-  name: Carla Work
-  latitude: !secret carla_work_lat
-  longitude: !secret carla_work_long
-  radius: 200
-  icon: mdi:school
+zone: !include zones.yaml
 
 #ZoneMinder Cameras
 zoneminder:
@@ -161,4 +148,7 @@ zwave:
   device_config_domain:
     light:
       refresh_value: true
-      delay: 5
+      delay: 6
+    switch:
+      refresh_value: true
+      delay: 6

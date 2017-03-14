@@ -1,5 +1,5 @@
 ##Turns the humidifier off after 8AM, if it is on
-- alias: Humidifier off
+- alias: Humidifier off 8am
   trigger:
     platform: time
     after: '08:00:00'
@@ -12,7 +12,7 @@
       entity_id: switch.humidifier
 
 ##Turns off the coffee machine 30 minutes after it is turned on
-- alias: Coffee machine timer
+- alias: Coffee machine 30 min timer
   trigger:
     platform: state
     entity_id: switch.coffee_maker

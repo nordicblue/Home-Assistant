@@ -1,9 +1,9 @@
-##Turns on living room lights, 30 minutes before sunset, if family is home
+##Turns on living room lights, 40 minutes before sunset, if family is home
 - alias: Hallway lights on sunset
   trigger:
     platform: sun
     event: sunset
-    offset: '-00:30:00'
+    offset: '-00:40:00'
   condition:
     condition: and
     conditions:
@@ -15,8 +15,7 @@
         state: 'off'
   action:
     - service: light.turn_on
-      entity_id: 
-        - light.living_room_dimmer_switch_level_7_0
+      entity_id: light.hallway_level_14_0
 
 ##Turns off the main floor lights at 10:00am on weekdays
 - alias: Main floor lights off weekdays 10am

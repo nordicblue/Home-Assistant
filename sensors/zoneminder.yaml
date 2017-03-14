@@ -1,0 +1,2 @@
+##Monitors the current state of ZoneMinder including the number of events and the current state of the cameras
+- platform: zoneminder

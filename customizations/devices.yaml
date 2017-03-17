@@ -15,4 +15,5 @@ fan.bedroom_fan:
   assumed_state: false
   friendly_name: Fan
 switch.blackbird:
+  icon: 'mdi:desktop-tower'
   emulated_hue: false

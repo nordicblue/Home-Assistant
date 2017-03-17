@@ -1,4 +1,5 @@
-##MQTT Sensors
+#MQTT Sensors
+##Master Bedroom
 - platform: mqtt
   state_topic: 'master/sensor'
   name: 'Bedroom temperature'
@@ -12,5 +13,21 @@
 - platform: mqtt
   state_topic: 'master/sensor'
   name: 'Bedroom light level'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.photoCell }}'
+##Kitchen
+- platform: mqtt
+  state_topic: 'kitchen/sensor'
+  name: 'Kitchen temperature'
+  unit_of_measurement: '°F'
+  value_template: '{{ value_json.temperature }}'
+- platform: mqtt
+  state_topic: 'kitchen/sensor'
+  name: 'Kitchen humidity'
+  unit_of_measurement: '%'
+  value_template: '{{ value_json.humidity }}'
+- platform: mqtt
+  state_topic: 'kitchen/sensor'
+  name: 'Kitchen light level'
   unit_of_measurement: '%'
   value_template: '{{ value_json.photoCell }}'

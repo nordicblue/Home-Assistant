@@ -1,7 +1,7 @@
 #Bedroom light automations
 
 ##Motion activated bedroom lights if the room is too dark
-- alias: Bedroom motion ceiling light
+- alias: Motion bedroom lights on
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_motion
@@ -41,7 +41,7 @@
       entity_id: group.bedroom_lights
 
 ##Turn bedroom lights off, if no motion is detected within 20 minutes
-- alias: Bedroom lights off no motion
+- alias: No motion bedroom lights off
   trigger:
     platform: state
     entity_id: binary_sensor.bedroom_motion
@@ -52,11 +52,9 @@
       minutes: 20
       seconds: 0
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: group.bedroom_lights
-        state: 'on'
+    condition: state
+    entity_id: group.bedroom_lights
+    state: 'on'
   action:
     - service: homeassistant.turn_off
       entity_id: group.bedroom_lights

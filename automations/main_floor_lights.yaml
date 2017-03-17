@@ -1,5 +1,5 @@
 ##Turns on living room lights, 40 minutes before sunset, if family is home
-- alias: Hallway lights on sunset
+- alias: Main hallway lights on sunset
   trigger:
     platform: sun
     event: sunset
@@ -17,30 +17,8 @@
     - service: light.turn_on
       entity_id: light.hallway_level_14_0
 
-##Turns off the main floor lights at 10:00am on weekdays
-- alias: Main floor lights off weekdays 10am
-  trigger:
-    platform: time
-    after: '10:00:00'
-  condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-          - sun
-          - mon
-          - tue
-          - wed
-          - thu
-      - condition: state
-        entity_id: group.main_floor_lights
-        state: 'on'        
-  action:
-    - service: homeassistant.turn_off
-      entity_id: group.main_floor_lights
-
 ##Turn off main floor lights on weekdays, between 10am and 4pm, after being on for 10 minutes
-- alias: Main floor lights work day timer
+- alias: Timer main floor lights off weekday day
   trigger:
     platform: state
     entity_id: group.main_floor_lights
@@ -65,7 +43,7 @@
       entity_id: group.main_floor_lights
 
 ##Turn off main floor lights on weekdays, between 9:20pm and 4am, after being on for 15 minutes
-- alias: Main floor lights weekday night time timer
+- alias: Timer main floor lights off weekday night
   trigger:
     platform: state
     entity_id: group.main_floor_lights
@@ -88,3 +66,40 @@
   action:
     - service: homeassistant.turn_off
       entity_id: group.main_floor_lights
+
+- alias: Main floor lights off sunrise
+  trigger:
+    platform: sun
+    event: 'sunrise'
+    offset: '00:45:00'
+  condition:
+    condition: state
+    entity_id: group.main_floor_lights
+    state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: 
+        - group.main_floor_lights
+
+##Turns off the main lights at 10:00am on weekdays
+- alias: Main floor lights off weekday mornings
+  trigger:
+    platform: time
+    after: '10:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: group.main_floor_lights
+        state: 'on'           
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.main_floor_lights

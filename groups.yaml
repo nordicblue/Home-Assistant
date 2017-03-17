@@ -20,6 +20,7 @@ main_floor_view:
     - group.living_room
     - group.kitchen_and_dining
     - group.kitchen_appliances
+    - group.kitchen_sensors
     - media_player.living_room
 upstairs_view:
   view: yes
@@ -62,6 +63,7 @@ automations:
   name: Auto
   view: yes
   entities:
+    - group.disable_automations
     - group.all_automations
 family:
   name: Family
@@ -83,6 +85,13 @@ kitchen_appliances:
   name: Kitchen Appliances
   entities:
     - switch.coffee_maker
+kitchen_sensors:
+  name: Kitchen Sensors
+  entities:
+    - sensor.kitchen_temperature
+    - sensor.kitchen_humidity
+    - sensor.kitchen_light_level
+    - binary_sensor.kitchen_motion
 bedroom_lights:
   name: Bedroom Lights
   entities:
@@ -198,3 +207,7 @@ lock_house:
   name: Lock House
   entities:
     - script.lock_house_now
+disable_automations:
+  name: Disable Automations
+  entities:
+    - script.day_off

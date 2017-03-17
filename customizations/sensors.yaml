@@ -1,4 +1,5 @@
-##Sensor customizations
+#Sensor customizations
+##System sensors
 sensor.cpu_use:
   friendly_name: CPU Use %
 sensor.disk_free_:
@@ -7,10 +8,6 @@ sensor.disk_use_:
   friendly_name: Disk used %
 sensor.disk_use__2:
   friendly_name: Disk used GB
-sensor.front_door_events:
-  friendly_name: Front door camera event count
-sensor.front_door_status:
-  friendly_name: Front door camera status
 sensor.ipv4_address_ens160:
   friendly_name: IPv4 Address
 sensor.ram_free:
@@ -21,6 +18,12 @@ sensor.ram_use_2:
   friendly_name: RAM free MB
 sensor.swap_use:
   friendly_name: Swap file size GB
+##Camera
+sensor.front_door_events:
+  friendly_name: Front door camera event count
+sensor.front_door_status:
+  friendly_name: Front door camera status
+##Dark Sky
 sensor.dark_sky_summary:
   friendly_name: Summary
 sensor.dark_sky_temperature:
@@ -49,19 +52,30 @@ sensor.dark_sky_wind_speed:
   friendly_name: wind speed
 sensor.dark_sky_wind_bearing:
   friendly_name: wind bearing
+##Weather
 sensor.yr_symbol:
   friendly_name: Weather
+##Master Bedroom
 sensor.bedroom_temperature:
   icon: 'mdi:thermometer'
   friendly_name: Temperature
 sensor.bedroom_humidity:
   icon: 'mdi:water-percent'
   friendly_name: Humidity
-sensor.bedroom_pressure:
-  icon: 'mdi:airballoon'
-  friendly_name: Pressure
 sensor.bedroom_light_level:
   icon: 'mdi:theme-light-dark'
   friendly_name: Light level
 sensor.bedroom_motion:
+  friendly_name: Motion
+##Kitchen
+sensor.kitchen_temperature:
+  icon: 'mdi:thermometer'
+  friendly_name: Temperature
+sensor.kitchen_humidity:
+  icon: 'mdi:water-percent'
+  friendly_name: Humidity
+sensor.kitchen_light_level:
+  icon: 'mdi:theme-light-dark'
+  friendly_name: Light level
+sensor.kitchen_motion:
   friendly_name: Motion

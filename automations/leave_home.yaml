@@ -1,5 +1,5 @@
 ##Turns off all lights 15 minutes after family leaves
-- alias: All lights off when family leaves
+- alias: All lights off when family left
   trigger:
     platform: state
     entity_id: group.family

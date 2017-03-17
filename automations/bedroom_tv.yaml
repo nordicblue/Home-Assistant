@@ -1,5 +1,5 @@
 ##Turns the Bedroom TV off after 2AM, if it is on
-- alias: Bedroom TV off 2am
+- alias: Bedroom TV off late night
   trigger:
     platform: time
     after: '02:00:00'

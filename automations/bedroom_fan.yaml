@@ -1,7 +1,7 @@
 #Bedroom fan automations
 
 ##If bedroom temperature is 75 and 78 degrees, and it is between 8:30pm and 9am and someone is home, turn bedroom fan on low
-- alias: Fan on low night time
+- alias: Fan on low nighttime
   trigger:
     platform: numeric_state
     entity_id: sensor.bedroom_temperature
@@ -24,7 +24,7 @@
       entity_id: script.fan_low
       
 ##If bedroom temperature is above 79 and below 81 degrees, and it is between 8:30pm and 9am and someone is home, turn bedroom fan on medium
-- alias: Fan on medium night time
+- alias: Fan on medium nighttime
   trigger:
     platform: numeric_state
     entity_id: sensor.bedroom_temperature
@@ -47,7 +47,7 @@
       entity_id: script.fan_medium
 
 ##If bedroom temperature is above above 82 degrees, and it is between 8:30pm and 9am and someone is home, turn bedroom fan on high
-- alias: Fan on high night time
+- alias: Fan on high nighttime
   trigger:
     platform: numeric_state
     entity_id: sensor.bedroom_temperature
@@ -83,7 +83,7 @@
       entity_id: fan.bedroom_fan
 
 ##If after 9:30am, turn fan off if it is on
-- alias: Fan off 930am
+- alias: Fan off morning
   trigger:
     platform: time
     after: '09:30:00'

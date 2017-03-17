@@ -1,5 +1,5 @@
 ##Turns on main floor hallway lights when someone gets home after sunset with 45 minute offset
-- alias: Hallway lights on when family arrives
+- alias: Main floor lights on when family arrives
   trigger:
     platform: state
     entity_id: group.family

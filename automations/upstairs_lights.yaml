@@ -1,5 +1,5 @@
 ##Turn off all upstairs lights at 9am on weekdays
-- alias: Upstairs lights off weekdays
+- alias: Upstairs lights off weekday mornings
   trigger:
     platform: time
     after: '09:00:00'
@@ -20,33 +20,8 @@
     - service: homeassistant.turn_off
       entity_id: group.all_upstairs_lights
 
-##Turn off all upstairs lights on weekdays, between 9am and 4pm, after being on for 15 minutes
-- alias: Upstairs lights work day timer
-  trigger:
-    platform: state
-    entity_id: group.all_upstairs_lights
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 0
-      minutes: 15
-      seconds: 0
-  condition:
-      condition: time
-      after: '9:00:00'
-      before: '17:30:00'
-      weekday:
-       - mon
-       - tue
-       - wed
-       - thu
-       - fri
-  action:
-    - service: homeassistant.turn_off
-      entity_id: group.all_upstairs_lights
-
-##Turns the up stairs hallway lights off after 15 minutes during daylight hours
-- alias: Up Stairs Lights Off day
+##Turns the up stairs hallway lights off after 5 minutes during daylight hours
+- alias: Timer upstairs hallway lights off daytime
   trigger:
     platform: state
     entity_id: light.up_stairs_hallway_level_15_0
@@ -57,15 +32,15 @@
       minutes: 5
       seconds: 0
   condition:
-    condition: time
-    after: '08:30:00'
-    before: '15:59:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon' 
   action:
     - service: light.turn_off
       entity_id: light.up_stairs_hallway_level_15_0
 
 ##Turns the up stairs hallway lights off after 15 minutes at night time
-- alias: Up Stair Lights Off night
+- alias: Timer upstairs hallway lights off nighttime  
   trigger:
     platform: state
     entity_id: light.up_stairs_hallway_level_15_0
@@ -76,9 +51,9 @@
       minutes: 15
       seconds: 0
   condition:
-    condition: time
-    after: '16:00:00'
-    before: '08:29:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon' 
   action:
     - service: light.turn_off
       entity_id: light.up_stairs_hallway_level_15_0

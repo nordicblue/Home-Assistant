@@ -17,7 +17,7 @@
       entity_id: switch.back_porch_switch_16_0
 
 ##Turns off back porch light at 10:30pm
-- alias: Back porch lights off 1030pm
+- alias: Back porch lights off late night
   trigger:
     platform: time
     after: '22:30:00'
@@ -30,7 +30,7 @@
       entity_id: switch.back_porch_switch_16_0
 
 ##Turns on back porch light at 6am
-- alias: Back porch lights on 6am
+- alias: Back porch lights on early morning
   trigger:
     platform: time
     after: '06:00:00'
@@ -61,7 +61,7 @@
       entity_id: switch.back_porch_switch_16_0
 
 ##Turns the basement stair lights off after 5 minutes during daylight hours
-- alias: Basement Stair Lights 5 min off timer day
+- alias: Timer downstairs hallway lights off daytime
   trigger:
     platform: state
     entity_id: switch.basement_stairs_switch_9_0
@@ -71,15 +71,15 @@
       minutes: 5
       seconds: 0
   condition:
-    condition: time
-    after: '08:30:00'
-    before: '15:59:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon'
   action:
     - service: switch.turn_off
       entity_id: switch.basement_stairs_switch_9_0
 
 ##Turns the basement stair lights off after 10 minutes at night time
-- alias: Basement Stair Lights 10 min off timer night
+- alias: Timer downstairs hallway lights off nighttime
   trigger:
     platform: state
     entity_id: switch.basement_stairs_switch_9_0
@@ -89,9 +89,9 @@
       minutes: 10
       seconds: 0
   condition:
-    condition: time
-    after: '16:00:00'
-    before: '08:29:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
   action:
     - service: switch.turn_off
       entity_id: switch.basement_stairs_switch_9_0

@@ -1,7 +1,7 @@
 #Lock house automation - Turns on the alarm and lights off on main floor and basement
 
 ##Lock house down on weekdays at 9:30pm
-- alias: Lock house weekdays
+- alias: Lock house weekday nights
   trigger:
     platform: time
     after: '21:30:00'
@@ -31,7 +31,7 @@
       entity_id: script.lock_house_now    
 
 ##Asks if I am ready for lock the house down on weekends at 9:30pm
-- alias: Lock house request
+- alias: Notify lock house request weekend night
   trigger:
     platform: time
     after: '21:30:00'
@@ -67,7 +67,7 @@
             title: 'No'
 
 ##Verifies that the alarm is definitely armed at midnight
-- alias: Verify alarm is on
+- alias: Verify alarm is on midnight
   trigger:
     platform: time
     after: '23:59:50'
@@ -89,7 +89,7 @@
             title: 'No'
 
 ##Turns off the main floor lights and turns on alarm when lock house response was Yes
-- alias: Lock house now
+- alias: Notify clicked yes lock house now
   trigger:
     platform: event
     event_type: html5_notification.clicked
@@ -100,7 +100,7 @@
       entity_id: script.lock_house_now
 
 ##When lock house notification was closed
-- alias: Lock house close
+- alias: Notify closed lock house snooze
   trigger:
     platform: event
     event_type: html5_notification.closed

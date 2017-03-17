@@ -9,11 +9,11 @@ light.kitchen_sink_level_13_0:
   icon: 'mdi:spotlight-beam'
   friendly_name: Sink Light
 light.dining_level_10_0:
-  icon: 'mdi:spotlight'
+  icon: 'mdi:ceiling-light'
   friendly_name: Dining Lights
 switch.basement_stairs_switch_9_0:
   icon: 'mdi:spotlight-beam'
-  friendly_name: Down Stairs Lights
+  friendly_name: Downstairs Hallway Lights
 switch.makeup_light:
   icon: 'mdi:lamp'
   assumed_state: false
@@ -34,6 +34,6 @@ light.up_stairs_hallway_level_15_0:
   emulated_hue_name: Upstairs Lights
   friendly_name: Upstairs Hallway Lights
 switch.back_porch_switch_16_0:
-  icon: 'mdi:lamp'
+  icon: 'mdi:ceiling-light'
   friendly_name: Back Porch Light
   

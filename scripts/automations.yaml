@@ -1,0 +1,18 @@
+#Script to disable certain automation on days with no work or school
+day_off:
+  alias: Day off from school
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - automation.main_floor_lights_off_weekday_mornings
+          - automation.upstairs_lights_off_weekday_mornings
+          - automation.timer_main_floor_lights_off_weekday_day
+    - delay:
+        hours: 12
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - automation.main_floor_lights_off_weekday_mornings
+          - automation.upstairs_lights_off_weekday_mornings
+          - automation.timer_main_floor_lights_off_weekday_day

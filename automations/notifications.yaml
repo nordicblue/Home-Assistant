@@ -1,5 +1,5 @@
 ##Notifies when Home Assistant updates are available       
-- alias: Notify when update available
+- alias: Notify HA update available
   trigger:
     platform: state
     entity_id: updater.updater
@@ -9,7 +9,7 @@
       message: 'Version {{ states.updater.updater.state }} now available'
 
 ##Notifies when Carla gets to work
-- alias: Carla at work
+- alias: Notify Carla at work
   trigger:
     platform: zone
     entity_id: device_tracker.carla_note4
@@ -27,7 +27,7 @@
         tag: 'carla'
 
 ##Notifies when Carla leaves work
-- alias: Carla left work
+- alias: Notify Carla left work
   trigger:
     platform: zone
     entity_id: device_tracker.carla_note4
@@ -45,7 +45,7 @@
         tag: 'carla'
 
 ##Notifies when Carla gets home
-- alias: Carla at home
+- alias: Notify Carla at Home
   trigger:
     platform: zone
     entity_id: device_tracker.carla_note4
@@ -63,7 +63,7 @@
         tag: 'carla'
 
 ##Notifies when Patrick gets home
-- alias: Patrick at home
+- alias: Notify Patrick at home
   trigger:
     platform: zone
     entity_id: device_tracker.patrick_pats7edge
@@ -81,7 +81,7 @@
         tag: 'patrick'
 
 ##Notifies when Patrick leaves home
-- alias: Patrick left home
+- alias: Notify Patrick left home
   trigger:
     platform: zone
     entity_id: device_tracker.patrick_pats7edge
@@ -97,3 +97,43 @@
       data:
         icon: '/local/patrick.png'
         tag: 'patrick'
+##DHT failure master bedroom
+- alias: Notify DHT failed master bedroom
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.bedroom_temperature
+    below: 1
+  condition:
+    condition: template
+    value_template: {{ trigger.from_state.state } <> { trigger.to_state.state }}
+  action:
+    service: notify.html5
+    data_template:
+      message: 'DHT failed bedroom - {{ trigger.from_state.state }}:{{ trigger.to_state.state }}'
+    data:
+      message: ''
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
+      data:
+        tag: 'dht-master-bedroom'
+##DHT failure kitchen
+- alias: Notify DHT failed kitchen
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.kitchen_temperature
+    below: 1
+  condition:
+    condition: template
+    value_template: {{ trigger.from_state.state } <> { trigger.to_state.state }}
+  action:
+    service: notify.html5
+    data_template:
+      message: 'DHT failed kitchen - {{ trigger.from_state.state }}:{{ trigger.to_state.state }}'
+    data:
+      message: ''
+      target:
+        - 'Pat S7 Edge'
+        - 'Blackbird Chrome'
+      data:
+        tag: 'dht-kitchen'

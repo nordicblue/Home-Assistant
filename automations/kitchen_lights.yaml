@@ -18,7 +18,7 @@
       entity_id: scene.kitchen_nightlight
 
 ##Turn sink light on 100% brightness with kitchen lights
-- alias: Sink light on with kitchen lights
+- alias: Sink light on when kitchen lights on
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0
@@ -29,41 +29,37 @@
       entity_id: scene.kitchen_sink_light_on
 
 ##Turn kitchen sink light to nightlight when kitchen lights turn off
-- alias: Sink nightlight on when kitchen lights off
+- alias: Sink nightlight on when kitchen lights off nighttime
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0
     from: 'on'
     to: 'off'    
   condition:
-    condition: time
-    after: '16:00:00'
-    before: '01:59:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
   action:
     - service: scene.turn_on
       entity_id: scene.kitchen_nightlight
 
-##Turn kitchen sink light off when kitchen lights turn off between 2am and 3pm
-- alias: Sink light off when kitchen light off 2am to 3pm
+##Turn kitchen sink light off when kitchen lights turn off during daylight
+- alias: Sink light off when kitchen lights off daytime
   trigger:
     platform: state
     entity_id: light.kitchen_level_12_0
     from: 'on'
     to: 'off'
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
   condition:
-    condition: time
-    after: '02:00:00'
-    before: '15:59:59' 
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon' 
   action:
     - service: light.turn_off
       entity_id: light.kitchen_sink_level_13_0
 
 ##Turns kitchen sink light off 2am
-- alias: kitchen sink light off 2am
+- alias: Sink light off late night
   trigger:
     platform: time
     after: '02:00:00'
@@ -76,7 +72,7 @@
       entity_id: light.kitchen_sink_level_13_0
 
 ##Turns kitchen sink nightlight on 6am
-- alias: kitchen sink light on 6am
+- alias: Sink nightlight on morning
   trigger:
     platform: time
     after: '06:00:00'
@@ -87,3 +83,24 @@
   action:
     - service: scene.turn_on
       entity_id: scene.kitchen_nightlight
+
+##Turns off all kitchen and dining lights 45 minutes after sunrise
+- alias: All kitchen lights off sunrise
+  trigger:
+    platform: sun
+    event: 'sunrise'
+    offset: '00:45:00'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.kitchen_and_dining
+        state: 'on'
+      - condition: state
+        entity_id: light.kitchen_sink_level_13_0
+        state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: 
+        - group.kitchen_and_dining
+        - light.kitchen_sink_level_13_0
